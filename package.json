@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "TARGET=build webpack",
-    "start": "TARGET=dev webpack-dev-server --port 8080 --progress --colors --hot --inline --history-api-fallback --content-base build",
+    "start": "TARGET=dev webpack-dev-server --port 8080 --progress --colors --hot --inline --history-api-fallback",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.15.6",
+    "html-webpack-plugin": "^1.6.0",
     "node-libs-browser": "^0.5.2",
     "style-loader": "^0.12.3",
     "webpack": "^1.10.5",
