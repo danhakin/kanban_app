@@ -19,13 +19,9 @@ var common = {
 	module: {
 		loaders: [
 			{
-				test: /\.jsx?$/,
-				loader: 'babel?stage=1',
-				include: path.resolve(ROOT_PATH, 'app')
-			},
-			{
 				test: /\.css$/,
-				loaders: ['style', 'css']
+				loaders: ['style', 'css'],
+				include: path.resolve(ROOT_PATH, 'app')
 			}
 		]
 	},
@@ -36,6 +32,7 @@ var common = {
 	]	
 };
 
+
 if (TARGET === 'build') {
 	module.exports = merge(common, {
 		devtool: 'source-map'
@@ -44,6 +41,15 @@ if (TARGET === 'build') {
 
 if (TARGET === 'dev') {
 	module.exports = merge(common, {
-		devtool: 'eval'
+		devtool: 'eval',
+		module: {
+			loaders: [
+				{
+					test: /\.jsx?$/,
+					loaders: ['react-hot', 'babel?stage=1'],
+					include: path.resolve(ROOT_PATH, 'app')
+				}
+			]
+		}
 	});
 }
