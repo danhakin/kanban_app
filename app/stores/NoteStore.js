@@ -4,10 +4,10 @@ import NoteActions from '../actions/NoteActions';
 
 class NoteStore {
 	constructor() {
-		this.dispatcher.register(console.log.bind(console));
+		//this.dispatcher.register(console.log.bind(console));
 		this.bindActions(NoteActions);
 	
-		this.notes = [];
+		this.notes = this.notes || [];
 	}
 
 	create(note) {
