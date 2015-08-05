@@ -2,9 +2,9 @@ import uuid from 'node-uuid';
 import AltContainer from 'alt/AltContainer';
 import React from 'react';
 
-import Notes from './Notes';
-import NoteActions from '../actions/NoteActions';
-import NoteStore from '../stores/NoteStore';
+import Lanes from './Lanes';
+import LaneActions from '../actions/LaneActions';
+import LaneStore from '../stores/LaneStore';
 
 export default class App extends React.Component {
 	render() {
@@ -12,26 +12,19 @@ export default class App extends React.Component {
 			<div>
 				<button onClick={this.addItem}>+</button>
 				<AltContainer 
-					stores={[NoteStore]} 
+					stores={[LaneStore]} 
 					inject={ {
-						items: () => NoteStore.getState().notes
+						items: () => LaneStore.getState().lanes || []
 					} } 
 				>
-					<Notes onEdit={this.itemEdited}/>
+					<Lanes />
 				</AltContainer>
 			</div>
 		);
 	}
 
 	addItem() {
-		NoteActions.create({id: uuid.v4(), task: 'New Task'});
+		LaneActions.create({id: uuid.v4(), name: 'New lane'});
 	}
 
-	itemEdited(id, task) {
-		if(task) {
-			NoteActions.update({id, task});
-		} else {
-			NoteActions.delete(id);
-		}
-	}
 }
